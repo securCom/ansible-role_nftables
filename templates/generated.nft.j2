@@ -1,0 +1,5 @@
+{{ ansible_managed | comment }}
+
+{% for rule in nftables_rules|default([]) %}
+include "{{ nftables_dir }}/generated.d/{{ rule }}.nft";
+{% endfor %}

@@ -1,0 +1,22 @@
+galaxy_info:
+  author: nftables
+  description: nftables managment
+  company: securCom, s.r.o.
+  license: BSD
+  min_ansible_version: 2.4
+  platforms:
+    - name: EL
+      versions:
+        - 7
+    - name: Ubuntu
+      versions:
+        - bionic
+    - name: Debian
+      versions:
+        - buster
+        - jessie
+  galaxy_tags:
+    - system
+    - networking
+    - nftables
+dependencies: []

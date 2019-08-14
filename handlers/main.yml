@@ -1,0 +1,15 @@
+---
+# handlers file for securcom.nftables
+
+---
+
+- name: "nftables generate rules"
+  service:
+    name: "{{ service_item }}"
+    state: "restarted"
+  with_items: "{{ nftables_services }}"
+  loop_control:
+    loop_var: service_item
+  when:  nftables_service_state in ('started')
+
+

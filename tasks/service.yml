@@ -1,0 +1,10 @@
+---
+
+- name: "common | service"
+  service:
+    name: "{{ service_item }}"
+    enabled: "{{ nftables_service_enabled }}"
+    state: "{{ nftables_service_state }}"
+  with_items: "{{ nftables_services }}"
+  loop_control:
+    loop_var: service_item

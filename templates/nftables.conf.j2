@@ -1,0 +1,10 @@
+#!/usr/sbin/nft -f
+
+{{ ansible_managed | comment }}
+
+{% if nftables_flush_ruleset|default(true) %}
+flush ruleset
+{% endif %}
+
+include "{{ nftables_dir }}/generated.nft";
+include "{{ nftables_dir }}/custom.nft";

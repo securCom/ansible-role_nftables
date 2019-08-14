@@ -1,0 +1,25 @@
+# defaults file for securcom.nftables
+---
+nftables_flush_ruleset: true
+nftables_dir: /etc/nftables
+
+nftables_rules:
+  - vars
+  - default_rules
+  - connection_tracking
+  - input_icmp
+  - managment
+
+
+nftables_chain_input_policy: DROP
+nftables_chain_forward_policy: DROP
+nftables_chain_output_policy: ACCEPT
+
+nftables_net_mngt:
+  - 0.0.0.0/0
+  - ::/0
+
+nftables_rules_directory: .
+
+nftables_service_state: 'started'
+nftables_service_enabled: 'yes'
