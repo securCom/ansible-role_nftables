@@ -1,0 +1,7 @@
+#!/usr/sbin/nft -f
+
+{{ ansible_managed | comment }}
+
+{% for family in nftables_families %}
+add rule {{ family }} filter INPUT tcp dport 22 accept
+{% endfor %}

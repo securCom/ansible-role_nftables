@@ -1,0 +1,16 @@
+#!/usr/sbin/nft -f
+
+{{ ansible_managed | comment }}
+
+{% for family in nftables_families %}
+
+add rule {{ family }} filter INPUT ct state established,related accept
+add rule {{ family }} filter INPUT ct state invalid drop
+
+add rule {{ family }} filter FORWARD ct state established,related accept
+add rule {{ family }} filter FORWARD ct state invalid drop
+
+add rule {{ family }} filter OUTPUT ct state new,established,related accept
+add rule {{ family }} filter OUTPUT ct state invalid drop
+
+{% endfor %}

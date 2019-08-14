@@ -1,0 +1,11 @@
+#!/usr/sbin/nft -f
+
+{{ ansible_managed | comment }}
+
+{% if 'ip' in nftables_families %}
+add rule ip filter INPUT icmp type { echo-request } accept
+{% endif %}
+
+{% if 'ip6' in nftables_families %}
+add rule ip6 filter INPUT icmpv6 type { echo-request, nd-neighbor-solicit } accept
+{% endif %}

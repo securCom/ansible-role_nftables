@@ -1,0 +1,20 @@
+#!/usr/sbin/nft -f
+
+{{ ansible_managed | comment }}
+
+{% for family in nftables_families %}
+table {{ family }} filter {
+	chain INPUT {
+		type filter hook input priority 0; policy {{ nftables_chain_input_policy | default('drop') }};
+		iifname "lo" accept
+	}
+
+	chain FORWARD {
+		type filter hook forward priority 0; policy {{ nftables_chain_forward_policy | default('drop') }};
+	}
+
+	chain OUTPUT {
+		type filter hook output priority 0; policy {{ nftables_chain_output_policy | default('accept')}};
+	}
+}
+{% endfor %}

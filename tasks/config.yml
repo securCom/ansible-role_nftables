@@ -16,7 +16,7 @@
 - name: "common | config templates"
   template:
     src: "{{ config_item.src }}"
-    dest: "{{ nftables_dir|default('/etc/nftables') }}/{{ config_item.dest }}"
+    dest: "{{ config_item.dest }}"
     backup: yes
     owner: root
     group: root
@@ -33,7 +33,7 @@
 
 - name: "common | rules files"
   template:
-    src: "{{ nftables_rules_directory }}/{{ rule_item }}.nft.j2"
+    src: "{{ nftables_rules_directory }}/rules/{{ rule_item }}.nft.j2"
     dest: "{{ nftables_dir }}/generated.d/{{ rule_item }}.nft"
     owner: root
     group: root

@@ -1,8 +1,6 @@
 ---
 # handlers file for securcom.nftables
 
----
-
 - name: "nftables generate rules"
   service:
     name: "{{ service_item }}"
