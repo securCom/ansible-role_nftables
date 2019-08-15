@@ -1,6 +1,6 @@
 # nftables managment
 
-- **Github**: [![Build Status](https://travis-ci.org/securcom/ansible_nftables.svg?branch=master)](https://travis-ci.org/securcom/ansible_nftables)
+- **Github**: [![Build Status](https://travis-ci.org/securCom/ansible-role_nftables.svg?branch=master)](https://travis-ci.org/securCom/ansible-role_nftables)
 
 
 This role manages the nftables.
