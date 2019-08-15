@@ -5,6 +5,5 @@ nftables_packages:
   - {'name': 'nftables', 'state': 'present'}
   - {'name': 'iptables', 'state': 'absent'}
 
-
 nftables_services:
   - nftables

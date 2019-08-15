@@ -3,6 +3,6 @@
   apt:
     pkg: "{{ package.name }}"
     state: "{{ package.state }}"
-  with_items: "{{ nftables_packages | default([])}}"
+  with_items: "{{ nftables_packages | default([]) }}"
   loop_control:
     loop_var: package
