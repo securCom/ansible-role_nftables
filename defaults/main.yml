@@ -19,3 +19,5 @@ nftables_rules_directory: .
 
 nftables_service_state: 'started'
 nftables_service_enabled: 'yes'
+
+nftables_test: false

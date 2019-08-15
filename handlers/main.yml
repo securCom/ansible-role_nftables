@@ -8,6 +8,4 @@
   with_items: "{{ nftables_services }}"
   loop_control:
     loop_var: service_item
-  when:  nftables_service_state in ('started')
-
-
+  when: nftables_service_state in ('started') and not nftables_test
