@@ -2,5 +2,5 @@
 - name: Converge
   hosts: all
   roles:
-    - role: ansible_nftables
+    - role: ansible-role_nftables
       nftables_test: true
