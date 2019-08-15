@@ -8,3 +8,4 @@
   with_items: "{{ nftables_services }}"
   loop_control:
     loop_var: service_item
+  when: not nftables_test
