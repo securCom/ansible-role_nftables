@@ -1,38 +1,74 @@
-Role Name
-=========
+# nftables managment
 
-A brief description of the role goes here.
+- **Github**: [![Build Status](https://travis-ci.org/securcom/ansible_nftables.svg?branch=master)](https://travis-ci.org/securcom/ansible_nftables)
 
-Requirements
-------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role manages the nftables.
 
-Role Variables
---------------
+As it's very hard to write generic nftables template, this role just moves **user defined** nftables config snippets to the server and run them, Ypu still need to understand nftables syntax.
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+## Requirements
 
-Dependencies
-------------
+- ansible: 2.4
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+## Role Variables
 
-Example Playbook
-----------------
+### OS based variables
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Some variables are based on OS. These variables are locaten in `vars/os-<OS>.yml` files.
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+### Generic Variables
 
-License
--------
+- `nftables_dir`: nftables configuration directory, defaults to **/etc/nftables**
+- `nftables_service_state`: if the ferm should be started
+- `nftables_service_enabled`: if the ferm should be enabled in boot sequence
+
+### Firewal rules
+
+- `nftables_rules_directory`: where should I look for the firewall rules files, default to playbook templates directory
+- `nftables_families`: to which ip version generate the rules, defaults **IPv4** and **IPv6**
+- `nftables_rules`: list of rules to apply. defualt allow only SSH and ICMP, see sample rules in **templates/rules** directory
+
+
+This role is using  of the templating engine to generate rules. The hard work to write the rules is still on you, but you have it fully **under control**.
+
+## Example
+
+### host/group variables
+```
+nftables_rules_directory: {{ playbook_dir }}/files/nftables
+
+nftables_rules:
+  - default_rules
+  - connection_tracking
+  - input_icmp
+  - managment
+```
+In this case you should create following files
+
+- `{{ playbook_dir }}/files/nftables/rules/default_rules.conf.j2`
+- `{{ playbook_dir }}/files/nftables/rules/connection_tracking.conf.j2`
+- `...`
+
+You should rewrite the `nftables_rules` in **group_var** or **host_vars** for each group or server as needed.
+
+
+### playbook
+
+```
+- hosts: ferm
+  roles:
+     - securcom.nftables
+```
+
+## Dependencies
+
+None
+
+## License
 
 BSD
 
-Author Information
-------------------
+## Author Information
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Peter Hudec (@hudecof)
