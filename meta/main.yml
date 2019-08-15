@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   role_name: nftables
-  author: Peter Hudec  author: 
+  author: Peter Hudec
   description: nftables managment
   company: securCom, s.r.o.
   license: BSD
