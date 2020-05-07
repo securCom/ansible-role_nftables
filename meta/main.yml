@@ -10,9 +10,11 @@ galaxy_info:
     - name: EL
       versions:
         - 7
+        - 8
     - name: Ubuntu
       versions:
         - bionic
+        - focal
     - name: Debian
       versions:
         - buster
