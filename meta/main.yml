@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   role_name: nftables
+  namespace: securcom
   author: Peter Hudec
   description: nftables managment
   company: securCom, s.r.o.
@@ -11,14 +12,18 @@ galaxy_info:
       versions:
         - 7
         - 8
+        - 9
     - name: Ubuntu
       versions:
         - bionic
         - focal
+        - jammy
     - name: Debian
       versions:
-        - buster
         - jessie
+        - stretch
+        - buster
+        - bullseye
   galaxy_tags:
     - system
     - networking
