@@ -1,8 +1,5 @@
 # nftables managment
 
-- **Github**: [![Build Status](https://travis-ci.org/securCom/ansible-role_nftables.svg?branch=master)](https://travis-ci.org/securCom/ansible-role_nftables)
-
-
 This role manages the nftables.
 
 As it's very hard to write generic nftables template, this role just moves **user defined** nftables config snippets to the server and run them, Ypu still need to understand nftables syntax.

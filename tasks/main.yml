@@ -1,8 +1,8 @@
 ---
 # tasks file for securcom.nftables
 
-- name: "set os specific variables"
-  include_vars: "{{ item }}"
+- name: "Set os specific variables"
+  ansible.builtin.include_vars: "{{ item }}"
   with_first_found:
     - "os-{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
     - "os-{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
@@ -11,20 +11,20 @@
     - "os-default.yml"
   tags: nftables
 
-- name: include packages tasks
-  include: packages-{{ ansible_os_family }}.yml
+- name: "Include packages tasks"
+  ansible.builtin.include_tasks: packages-{{ ansible_os_family }}.yml
   tags:
     - nftables
     - nftables:packages
 
-- name: include config tasks
-  include: config.yml
+- name: "Include config tasks"
+  ansible.builtin.include_tasks: config.yml
   tags:
     - nftables
     - nftables:config
 
-- name: include service tasks
-  include: service.yml
+- name: "Include service tasks"
+  ansible.builtin.include_tasks: service.yml
   tags:
     - nftables
     - nftables:service
