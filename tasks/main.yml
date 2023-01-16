@@ -9,22 +9,31 @@
     - "os-{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
     - "os-{{ ansible_distribution }}.yml"
     - "os-default.yml"
-  tags: nftables
+  tags: always
 
 - name: "Include packages tasks"
-  ansible.builtin.include_tasks: packages-{{ ansible_os_family }}.yml
-  tags:
-    - nftables
-    - nftables:packages
+  ansible.builtin.include_tasks:
+    file: packages-{{ ansible_os_family }}.yml
+    apply:
+      tags:
+      - nftables
+      - nftables:packages
+  tags: always
 
 - name: "Include config tasks"
-  ansible.builtin.include_tasks: config.yml
-  tags:
-    - nftables
-    - nftables:config
+  ansible.builtin.include_tasks:
+    file: config.yml
+    apply:
+      tags:
+        - nftables
+        - nftables:config
+  tags: always
 
 - name: "Include service tasks"
-  ansible.builtin.include_tasks: service.yml
-  tags:
-    - nftables
-    - nftables:service
+  ansible.builtin.include_tasks:
+    file: service.yml
+    apply:
+      tags:
+        - nftables
+        - nftables:service
+  tags: always
