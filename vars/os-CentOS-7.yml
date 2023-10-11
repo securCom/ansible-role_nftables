@@ -1,4 +1,6 @@
 ---
+nftables_enabled: true
+
 nftables_config_file: "/etc/sysconfig/nftables.conf"
 
 nftables_packages:

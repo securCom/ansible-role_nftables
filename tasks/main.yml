@@ -16,15 +16,18 @@
   tags:
     - nftables
     - nftables:packages
+  when: nftables_enabled
 
 - name: include config tasks
   include: config.yml
   tags:
     - nftables
     - nftables:config
+  when: nftables_enabled
 
 - name: include service tasks
   include: service.yml
   tags:
     - nftables
     - nftables:service
+  when: nftables_enabled
