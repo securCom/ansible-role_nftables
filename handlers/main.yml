@@ -1,8 +1,8 @@
 ---
 # handlers file for securcom.nftables
 
-- name: "nftables generate rules"
-  service:
+- name: "nftables generate rules"   # noqa name[casing]
+  ansible.builtin.service:
     name: "{{ service_item }}"
     state: "restarted"
   with_items: "{{ nftables_services }}"

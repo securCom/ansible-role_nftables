@@ -1,6 +1,6 @@
 ---
-- name: "check packages (debian)"
-  apt:
+- name: "Debian | check packages"
+  ansible.builtin.apt:
     pkg: "{{ package.name }}"
     state: "{{ package.state }}"
   with_items: "{{ nftables_packages | default([]) }}"

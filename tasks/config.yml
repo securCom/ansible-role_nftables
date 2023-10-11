@@ -1,7 +1,7 @@
 ---
 
-- name: "common | config directory"
-  file:
+- name: "Common | config directory"
+  ansible.builtin.file:
     path: "{{ directory_item }}"
     owner: root
     group: root
@@ -13,11 +13,11 @@
   loop_control:
     loop_var: directory_item
 
-- name: "common | config templates"
-  template:
+- name: "Common | config templates"
+  ansible.builtin.template:
     src: "{{ config_item.src }}"
     dest: "{{ config_item.dest }}"
-    backup: yes
+    backup: true
     owner: root
     group: root
     mode: 0640
@@ -31,8 +31,8 @@
   notify:
     - "nftables generate rules"
 
-- name: "common | rules files"
-  template:
+- name: "Common | rules files"
+  ansible.builtin.template:
     src: "{{ nftables_rules_directory }}/rules/{{ rule_item }}.nft.j2"
     dest: "{{ nftables_dir }}/generated.d/{{ rule_item }}.nft"
     owner: root

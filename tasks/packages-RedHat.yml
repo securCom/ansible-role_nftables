@@ -1,6 +1,6 @@
 ---
-- name: "check packages (redhat)"
-  yum:
+- name: "RedHat | check packages"
+  ansible.builtin.yum:
     pkg: "{{ package.name }}"
     state: "{{ package.state }}"
   with_items: "{{ nftables_packages | default([]) }}"

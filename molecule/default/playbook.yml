@@ -1,6 +1,0 @@
----
-- name: Converge
-  hosts: all
-  roles:
-    - role: securcom.nftables
-      nftables_test: true
