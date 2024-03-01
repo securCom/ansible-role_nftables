@@ -1,8 +1,8 @@
-# nftables managment
+# nftables Management
 
-This role manages the nftables.
+This role helps you manage packet filtering and related tasks with nftables.
 
-As it's very hard to write generic nftables template, this role just moves **user defined** nftables config snippets to the server and run them, Ypu still need to understand nftables syntax.
+As it's very hard to write a generic nftables template, this role just moves **user defined** nftables config snippets to the target device and runs them.  You still need to understand nftables syntax.
 
 ## Requirements
 
@@ -10,24 +10,23 @@ As it's very hard to write generic nftables template, this role just moves **use
 
 ## Role Variables
 
-### OS based variables
+### OS Based Variables
 
-Some variables are based on OS. These variables are locaten in `vars/os-<OS>.yml` files.
+Some variables are based on OS. These variables are located in `vars/os-<OS>.yml` files.
 
 ### Generic Variables
 
 - `nftables_dir`: nftables configuration directory, defaults to **/etc/nftables**
-- `nftables_service_state`: if the ferm should be started
-- `nftables_service_enabled`: if the ferm should be enabled in boot sequence
+- `nftables_service_state`: if the rule set should be started
+- `nftables_service_enabled`: if the rule set should be enabled at boot time
 
-### Firewal rules
+### Firewall Rules
 
-- `nftables_rules_directory`: where should I look for the firewall rules files, default to playbook templates directory
-- `nftables_families`: to which ip version generate the rules, defaults **IPv4** and **IPv6**
-- `nftables_rules`: list of rules to apply. defualt allow only SSH and ICMP, see sample rules in **templates/rules** directory
+- `nftables_rules_directory`: where to look for the firewall rules files, defaults to playbook templates directory
+- `nftables_families`: which IP version(s) to generated rules for, defaults **IPv4** and **IPv6**
+- `nftables_rules`: list of rules to apply. Defaults to allow only SSH and ICMP, see sample rules in **templates/rules** directory
 
-
-This role is using  of the templating engine to generate rules. The hard work to write the rules is still on you, but you have it fully **under control**.
+This role uses the templating engine to generate rules. The hard work to write the rules is still your responsibility, but you have it fully **under control**.
 
 ## Example
 
@@ -41,7 +40,7 @@ nftables_rules:
   - input_icmp
   - managment
 ```
-In this case you should create following files
+In this case you should create following files:
 
 - `{{ playbook_dir }}/files/nftables/rules/default_rules.conf.j2`
 - `{{ playbook_dir }}/files/nftables/rules/connection_tracking.conf.j2`
@@ -53,7 +52,7 @@ You should rewrite the `nftables_rules` in **group_var** or **host_vars** for ea
 ### playbook
 
 ```
-- hosts: ferm
+- hosts: firewall1
   roles:
      - securcom.nftables
 ```
